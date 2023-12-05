@@ -2,7 +2,6 @@ import os
 import random
 import sys
 import time
-
 import pygame as pg
 
 
@@ -151,14 +150,10 @@ def main():
     # BombインスタンスがNUM個並んだリスト
     bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]
     beams_lst = [] #追加課題４:空のリスト
-    
     beam = None
-    
-    
-
-
     clock = pg.time.Clock()
     tmr = 0
+
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -166,10 +161,7 @@ def main():
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:  # スペースキーが押されたら
                 beam = Beam(bird)  # ビームインスタンスの生成
                 beams_lst.append(Beam(bird))
-        
-        
         screen.blit(bg_img, [0, 0])
-        
         for bomb in bombs:
             if bird.rct.colliderect(bomb.rct):
                 # ゲームオーバー時に，こうかとん画像を切り替え，1秒間表示させる
@@ -189,9 +181,9 @@ def main():
                 beam = None
                 bombs[i] = None
                 bird.change_img(6, screen)
+
         # Noneでない爆弾だけのリストを作る
         bombs = [bomb for bomb in bombs if bomb is not None]
-
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
         for bomb in bombs:
