@@ -149,8 +149,13 @@ def main():
     bg_img = pg.image.load(f"{MAIN_DIR}/fig/pg_bg.jpg")
     bird = Bird(3, (900, 400))
     # BombインスタンスがNUM個並んだリスト
-    bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]  
+    bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]
+    beams_lst = [] 
+    
     beam = None
+    
+    
+
 
     clock = pg.time.Clock()
     tmr = 0
@@ -160,6 +165,8 @@ def main():
                 return
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:  # スペースキーが押されたら
                 beam = Beam(bird)  # ビームインスタンスの生成
+                beams_lst.append(Beam(bird))
+        
         
         screen.blit(bg_img, [0, 0])
         
@@ -172,6 +179,12 @@ def main():
                 return
 
         for i, bomb in enumerate(bombs):
+            #for i, beam in enumerate(beams_lst):
+             #   if beam is not None or bomb is not None:
+              #      if beam.rct.colliderect(bomb.rct):
+               #         beam[i] = None
+                #    if beam.rct.right<=0 or beam.rct.right>= HEIGHT or beam.rct <= 0 or beam.rct > WIDTH:
+                 #       beams_lst.pop(beam)
             if beam is not None and beam.rct.colliderect(bomb.rct):
                 beam = None
                 bombs[i] = None
