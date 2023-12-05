@@ -150,7 +150,7 @@ def main():
     bird = Bird(3, (900, 400))
     # BombインスタンスがNUM個並んだリスト
     bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]
-    beams_lst = [] 
+    beams_lst = [] #追加課題４:空のリスト
     
     beam = None
     
@@ -179,7 +179,7 @@ def main():
                 return
 
         for i, bomb in enumerate(bombs):
-            #for i, beam in enumerate(beams_lst):
+            #for i, beam in enumerate(beams_lst): #追加課題４の途中
              #   if beam is not None or bomb is not None:
               #      if beam.rct.colliderect(bomb.rct):
                #         beam[i] = None
